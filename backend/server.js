@@ -30,9 +30,17 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(globalLimiter);
 
-// Health check
+// Health checks (for Railway and external monitors)
+const healthPayload = { status: "ok", message: "CyberGuard Academy API is running" };
+
+// Internal API health
 app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", message: "CyberGuard Academy API is running" });
+  res.json(healthPayload);
+});
+
+// Platform health (Railway probes `/health` by default)
+app.get("/health", (req, res) => {
+  res.json(healthPayload);
 });
 
 // Routes
