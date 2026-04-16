@@ -43,3 +43,9 @@ Thumbs.db
 *.local
 coverage/
 .nyc_output/
+
+# ── Keep deployment configs (do not ignore these) ─────────────────────────────
+!railway.toml
+!nixpacks.toml
+!.nvmrc
+!Procfile
