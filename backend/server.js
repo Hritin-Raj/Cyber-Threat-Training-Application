@@ -23,6 +23,8 @@ app.use(
     // need credentials. Wildcard origin keeps CORS simple and robust
     // for both local and Railway domains.
     origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: false,
   })
 );
