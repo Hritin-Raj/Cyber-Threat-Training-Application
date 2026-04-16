@@ -19,8 +19,11 @@ connectDB();
 // Middleware
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    credentials: true,
+    // Frontend uses Authorization headers, not cookies, so we don't
+    // need credentials. Wildcard origin keeps CORS simple and robust
+    // for both local and Railway domains.
+    origin: "*",
+    credentials: false,
   })
 );
 app.use(express.json({ limit: "10mb" }));
